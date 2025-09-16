@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "815348430476",
+    "project_id": "escola-musica-app",
+    "storage_bucket": "escola-musica-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:815348430476:android:2f21f0ecb85b899f7aeda9",
+        "android_client_info": {
+          "package_name": "com.example.escola_musica_final"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHoFo44_rlwwvBm6L8CzEHg86OgoBktp8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
