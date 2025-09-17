@@ -1,9 +1,22 @@
-# Linguagens do Flutter
+# Linguagem principal
 *.dart linguist-language=Dart
 
-# Ignorar pastas nativas para a contagem de linguagens
+# Ignorar pastas nativas
 android/* linguist-vendored
 ios/* linguist-vendored
 windows/* linguist-vendored
 linux/* linguist-vendored
 macos/* linguist-vendored
+
+# Ignorar arquivos gerados e de build
+**/generated_plugin_registrant.cc linguist-vendored
+**/generated_plugin_registrant.h linguist-vendored
+**/generated_plugins.cmake linguist-vendored
+**/.flutter-plugins linguist-vendored
+**/.flutter-plugins-dependencies linguist-vendored
+**/gradlew linguist-vendored
+**/gradlew.bat linguist-vendored
+**/podfile linguist-vendored
+**/pom.xml linguist-vendored
+**/build.gradle linguist-vendored
+**/build.gradle.kts linguist-vendored
