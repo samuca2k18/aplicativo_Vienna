@@ -14,6 +14,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _authService = AuthService();
+  bool _isLoading = false;
   @override
   void dispose() {
     _emailController.dispose();
@@ -49,26 +50,42 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             const SizedBox(height: 24),
-            ElevatedButton(
-              onPressed: () {
-                // Vamos adicionar a lógica de login aqui
-              },
-              child: const Text('Entrar'),
-            ),
+        ElevatedButton(
+          onPressed: _isLoading ? null : _login,
+          child: _isLoading
+              ? const CircularProgressIndicator(color: Colors.white)
+              : const Text('Entrar'),
+        ),
           ],
         ),
       ),
     );
   }
+  // No arquivo lib/screens/login_screen.dart
+
   Future<void> _login() async {
+    setState(() {
+      _isLoading = true;
+    });
+
     try {
-      await _authService.signInWithEmailAndPassword(
-        _emailController.text,
-        _passwordController.text,
+      // Apenas chame o método de login do Firebase
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
       );
-      // ... (o resto da lógica de sucesso e erro)
+
+      // Mostra a mensagem de sucesso. A navegação será tratada pelo StreamBuilder.
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Login bem-sucedido!')),
+      );
+
     } on FirebaseAuthException catch (e) {
-      // ... (o resto da lógica de erro)
+      // ... sua lógica de erro ...
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
 }

@@ -1,6 +1,10 @@
+// No arquivo lib/main.dart
+
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:escola_musica_final/screens/login_screen.dart'; // Importe a tela de login aqui
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:escola_musica_final/screens/login_screen.dart';
+import 'package:escola_musica_final/screens/DashboardScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +22,25 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const LoginScreen(),
+      home: StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          // mostra um indicador de carregamento caso o firebase ainda estiver autenticando
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          }
+          // mostra o dash board caso o usuario tiver logado
+          if (snapshot.hasData) {
+            return const DashboardScreen();
+          }
+          // caso não estiver mostra a tela de login
+          return const LoginScreen();
+        },
+      ),
     );
   }
 }

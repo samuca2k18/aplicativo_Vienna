@@ -1,0 +1,9 @@
+# Linguagens do Flutter
+*.dart linguist-language=Dart
+
+# Ignorar pastas nativas para a contagem de linguagens
+android/* linguist-vendored
+ios/* linguist-vendored
+windows/* linguist-vendored
+linux/* linguist-vendored
+macos/* linguist-vendored
